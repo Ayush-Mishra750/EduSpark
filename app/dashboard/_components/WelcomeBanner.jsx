@@ -6,7 +6,7 @@ import React from "react";
 function WelcomeBanner() {
   const { user } = useUser();
   return (
-    <div className="p-5 bg-blue-600 w-full text-white rounded-lg flex items-center gap-10  ">
+    <div className="p-5 bg-blue-600 w-full text-white rounded-lg flex items-center gap-10 h-30 ">
       <Image src={"/laptop.png"} alt="laptop" width={100} height={100} />
       <div className="mt-3 ">
            <h2 className="font-bold text-3xl">Hello, {user?.fullName}</h2>

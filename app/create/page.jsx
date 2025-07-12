@@ -28,9 +28,9 @@ function Create() {
       <div className="mt-10">{step == 0 ? <SelectOption  selectedStudyType={(value)=>{handleUserInput('studyType',value)}}/> : <TopicInput
       setTopic={(value)=>handleUserInput('topic',value)}
       setDifficultyLevel={(value)=>handleUserInput('difficultyLevel',value)} />}</div>
-      <div className="flex justify-between mt-32 w-full">
-      {step!=0?  <Button  onClick={()=>setStep(step-1)} className='bg-blue-500'>Prev</Button>:" "}
-        {step==0?<Button onClick={()=>setStep(step+1)}>Next</Button>:<Button>Generate</Button>}
+      <div className="flex justify-between mt-32 gap-30">
+      {step!=0?  <Button  onClick={()=>setStep(step-1)} className='bg-blue-500 hover:bg-slate-300 text-black font-bold'>Prev</Button>:" "}
+        {step==0?<Button onClick={()=>setStep(step+1)}>Next</Button>:<Button className= " font-bold hover:bg-slate-200 hover:text-black">Generate</Button>}
       </div>
     </div>
   );
