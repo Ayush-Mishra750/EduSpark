@@ -32,7 +32,9 @@ function SideBar() {
         <h2 className="font-bold text-2xl">EduSpark</h2>
       </div>
       <div className="mt-10">
+        <Link href='/create'>
         <Button className="w-full bg-blue-700 ">+ Create New</Button>
+        </Link>
         <div>
           {menuList.map((menu, index) => {
             return (
