@@ -16,6 +16,7 @@ export const CreateNewUser = inngest.createFunction(
   { id: "create-user" },
   { event: "user.create" },
   async ({ event, step }) => {
+    // console.log(event ,step);
     const {user}=event.data;
     //Get event data
     const result = await step.run(
@@ -35,7 +36,7 @@ export const CreateNewUser = inngest.createFunction(
               email: user?.primaryEmailAddress?.emailAddress,
             })
             .returning({ id: USER_TABLE.id });
-          return userResp;
+          return result;
         }
         return result;
       }
@@ -46,3 +47,15 @@ export const CreateNewUser = inngest.createFunction(
   
   //step to send  email notifications after 3 days Once user join
 );
+export const GenerateCourse=inngest.createFunction(
+   { id: "create-user" },
+  { event: "user.create" },
+  async ({event, step})=>{
+    const {user}=event.data;
+    const dbStepResult = await step.run(
+      "Add User Input to DB",async()=>{
+
+      }
+    )
+  }
+)

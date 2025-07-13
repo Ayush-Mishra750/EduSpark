@@ -10,5 +10,6 @@ export async function POST(req) {
             user:user
         }
     })
+    console.log(result)
     return NextResponse.json({result:result})
 }
