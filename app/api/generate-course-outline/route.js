@@ -12,13 +12,13 @@ const aiResp=await courseOutlineAiModel.sendMessage(Prompt);
 const aiResult=await JSON.parse(aiResp.response.text());
 
 //Save the result along with User Input
-const dbResult=db?.insert(STUDY_MATERIAL_TABLE).value({
+const dbResult=await db?.insert(STUDY_MATERIAL_TABLE).values({
     courseId:courseId,
     courseType:courseType,
     createdBy:createdBy,
     topic:topic,
     courseLayout:aiResult
-}).returning({STUDY_MATERIAL_TABLE});
+}).returning({resp:STUDY_MATERIAL_TABLE});
 console.log(dbResult)
-return NextResponse.json({result:db[0]});
+return NextResponse.json({result:dbResult[0]});
 }

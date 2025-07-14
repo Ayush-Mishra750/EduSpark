@@ -1,7 +1,8 @@
 import { db } from "@/configs/db";
 import { inngest } from "./client";
-import { USER_TABLE } from "@/configs/schema";
+import { STUDY_MATERIAL_TABLE, USER_TABLE } from "@/configs/schema";
 import { eq } from "drizzle-orm";
+import { courseOutlineAiModel } from "@/configs/AiModel";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },
@@ -51,11 +52,22 @@ export const GenerateCourse=inngest.createFunction(
    { id: "create-user" },
   { event: "user.create" },
   async ({event, step})=>{
-    const {user}=event.data;
+    const {courseId,topic,difficultyLevel,courseType,createdBy}=event.data;
     const dbStepResult = await step.run(
       "Add User Input to DB",async()=>{
+const dbResult=await db.insert(STUDY_MATERIAL_TABLE).values({
+   courseId:courseId,
+   topic:topic,
+   difficultyLevel:difficultyLevel,
+   courseType:courseType,
+    createdBy:createdBy,
+}).returning({id:STUDY_MATERIAL_TABLE.id})
 
+return dbResult;
       }
     )
+    console.log("dbStepResult",dbStepResult);
+    //Make Ai Api call to generate course outline
+    return dbStepResult;
   }
 )

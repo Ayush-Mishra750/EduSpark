@@ -25,7 +25,7 @@ function Create() {
    const GenerateCourseOutline=async()=>{
      try {
       const courseId=uuidv4(); 
-     const result=await axios.post('api/generate-course-outline',{
+     const result=await axios?.post('api/generate-course-outline',{
       courseId:courseId,
       ...formData,
       createdBy:user?.primaryEmailAddress?.emailAddress
@@ -49,7 +49,7 @@ function Create() {
       setDifficultyLevel={(value)=>handleUserInput('difficultyLevel',value)} />}</div>
       <div className="flex justify-between mt-32 gap-30">
       {step!=0?  <Button  onClick={()=>setStep(step-1)} className='bg-blue-500 hover:bg-slate-300 text-black font-bold'>Prev</Button>:" "}
-        {step==0?<Button onClick={()=>setStep(step+1)}>Next</Button>:<Button onClick={()=>GenerateCourseOutline()} className= " font-bold hover:bg-slate-200 hover:text-black">Generate</Button>}
+        {step==0?<Button onClick={()=>setStep(step+1)}>Next</Button>:<Button onClick={GenerateCourseOutline} className= " font-bold hover:bg-slate-200 hover:text-black">Generate</Button>}
       </div>
     </div>
   );

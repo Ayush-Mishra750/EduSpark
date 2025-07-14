@@ -16,5 +16,6 @@ export const STUDY_MATERIAL_TABLE=pgTable('studyMaterial',{
   topic:varchar().notNull(),
   difficultyLevel:varchar().default('easy'),
   courseLayout:json(),
-  createdBy:varchar().notNull()
+  createdBy:varchar().notNull(),
+  status:varchar().default('generating')
 })

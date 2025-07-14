@@ -13,9 +13,9 @@ function Provider({ children }) {
 
   useEffect(() => {
     user && CheckIsNewUser();
-  }, [user]);
+  }, []);
 
-  const CheckIsNewUser = async () => {
+ const CheckIsNewUser = async () => {
     //check is user already exist
   //   const result = await db
   //     .select()
@@ -34,7 +34,8 @@ function Provider({ children }) {
   //   //   console.log(userResp());
   //   }
   const resp=await axios.post('/api/create-user',{user:user});
-  console.log(resp.data)
+  // console.log(resp)
+  return resp.data;
   };
 
   return <div>{children}</div>;
